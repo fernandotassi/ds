@@ -1,0 +1,52 @@
+                  
+                 tb_usuario
+   id   |   nome      |   email          |   nascimento    |    site         |    genero  |   fotoPerfil_id
+   1    | João Silva  |  joao@gmail.com  |   15/10/1991    |   null          |    M       |        
+   2    | Maria Alice |  maria@gmail.com |   15/04/1999    |   youtube.com   |    F       |        
+   3    | Carlos Alves|  carlos@gmail.com|   null          |   null          |    M       |      
+   4    | Ana Clara   |  ana@gmail.com   |   23/01/1997    |   blog.clara.com|    F       |            
+
+  
+                 tb_seguidores
+   seguidor_id    |     seguido_id
+
+       
+                 tb_telefone
+   id    |   numero       |    usuario_id
+   
+
+                 tb_foto
+   uri    |   instPostagem     |    postagem_id  |   album_id   |   usuario_id 
+
+
+                 tb_postagem
+   id    |   texto              |    instante    |   usuario_id
+
+
+                 tb_album
+   id    |    titulo        |    instantePostagem    |   usuario_id
+
+
+ ----------------------------------------------------------------------------------------------------------
+
+ tb_usuario(id(pk), nome, email, nascimento, site, genero, fotoPerfil_id)
+       seguido_id referencia tb_usuario
+       fotoPerfil_id referencia tb_foto
+
+ tb_seguidores(seguidor_id(pk, fk), seguido_id(pk, fk))
+      seguidor_id referenci tb_usuario
+      seguido_id referencia tb_usuario
+
+ tb_telefone(id(pk), numero, usuario_id)
+      usuario_id referencia tb_usuario
+
+ tb_foto(uri(pk), instPostagem, postagem_id, album_id, usuario_id)
+      postagem_id referencia tb_postagem
+      album_id referencia tb_album
+      usuario_id referencia usuario_id
+
+ tb_postagem(id(pk), texto, instante, usuario_id)
+      usuario_id referencia tb_usuario
+
+ tb_album(id(pk), titulo, instPostagem, usuario_id)
+      usuario_id referencia tb_usuario 
